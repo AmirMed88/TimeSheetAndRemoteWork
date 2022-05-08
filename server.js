@@ -177,10 +177,21 @@ useUnifiedTopology: true
 // app.listen(PORT,()=>{
 //     console.log('server is running on port',PORT)
 // })
+__dirname =path.resolve();
+if(process.env.NODE_ENV === 'production'){
+  app.use(express.static(path.join(__dirname,'Dashbord/build')))
+app.get('*',(req,res)=>{
+  res.sendFile(path.resolve(__dirname, "Dashbord" , "build", "index.html"))
+})
 
+}else{
+  app.get("/",(req,res)=>{
+    res.send("API is running");
+  })
+}
 //////////////////////////////////////////////////////////
 
-const server = app.listen(5000,()=>{
+const server = app.listen(process.env.PORT ||5000,()=>{
   console.log('server running on port 5000.... ');
 });
 
