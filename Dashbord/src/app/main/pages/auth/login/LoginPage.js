@@ -67,7 +67,7 @@ const history = useHistory();
 const submitHandler =async e =>{
  
   e.preventDefault();
-  const profile =await fetch(`http://localhost:5000/userprofile/login/${input.email}/${input.password}`);
+  const profile =await fetch(`https://backendtimeline.herokuapp.com/userprofile/login/${input.email}/${input.password}`);
   const profileJson= await profile.json();
   console.log(profileJson);
   //const repositories=await fetch(profileJson.repos_url);
@@ -126,7 +126,7 @@ const submitHandler =async e =>{
    
  
   
-   axios.post('http://localhost:5000/user/login',newUser) 
+   axios.post('https://backendtimeline.herokuapp.com/user/login',newUser) 
    console.log("logged in") 
  
   
