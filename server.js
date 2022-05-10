@@ -96,7 +96,7 @@ app.use('/projects',require('./routes/project'))
 app.use('/phases',require('./routes/phases'))
 //////////////////////////youssef/////////////////////////////
 app.use('/api/equipe',equipeRoute);
-
+    // "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install --prefix Dashbord && npm run build --prefix Dashbord",
 // //add a team
 // app.post('/insert', async(req,res)=>{
 //   const teamName = req.body.teamName
@@ -173,10 +173,10 @@ useUnifiedTopology: true
 
 
 
-// const PORT = process.env.PORT || 5000
-// app.listen(PORT,()=>{
-//     console.log('server is running on port',PORT)
-// })
+const PORT = process.env.PORT || 5000
+app.listen(PORT,()=>{
+    console.log('server is running on port',PORT)
+})
 __dirname =path.resolve();
 if(process.env.NODE_ENV === 'production'){
   app.use(express.static(path.join(__dirname,'Dashbord/build')))
