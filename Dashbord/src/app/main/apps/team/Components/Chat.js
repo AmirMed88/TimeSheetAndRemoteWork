@@ -3,7 +3,7 @@ import "../Chat.css";
 import io from "socket.io-client";
 
 let socket;
-const CONNECTION_PORT = "localhost:5000/";
+const CONNECTION_PORT = "backendtimeline.herokuapp.com/";
 
 export default function Chat() {
   //before login
