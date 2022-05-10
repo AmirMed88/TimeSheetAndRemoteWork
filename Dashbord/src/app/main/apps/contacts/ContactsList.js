@@ -13,7 +13,7 @@ import {
   removeContact,
   toggleStarredContact,
   selectContacts,} from './store/contactsSlice';
-  import axios from 'axios';
+  // import axios from 'axios';
 function ContactsList(props) {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
@@ -25,7 +25,7 @@ function ContactsList(props) {
 
   useEffect(() => {
     console.log('here',user);
-    // const res =  axios.get(`https://backendtimeline.herokuapp.com/api/equipe/findEquipe/${id}`).then((response) => {
+    // const res =  axios.get(`http://localhost:5000/api/equipe/findEquipe/${id}`).then((response) => {
     //  setMembers(response.data)
     //  // console.log(response.data);
     //  console.log('hhh',members);
@@ -88,11 +88,12 @@ function ContactsList(props) {
       // },
       {
         id: 'action',
+        Header: 'Team Chat Rooms',
         width: 128,
         sortable: false,
         Cell: ({ row }) => (
           <div className="flex items-center">
-            <IconButton
+            {/* <IconButton
               onClick={(ev) => {
                 ev.stopPropagation();
                 dispatch(toggleStarredContact(row.original.id));
@@ -103,7 +104,7 @@ function ContactsList(props) {
               ) : (
                 <Icon>star_border</Icon>
               )}
-            </IconButton>
+            </IconButton> */}
             {/* <IconButton
               onClick={(ev) => {
                 ev.stopPropagation();
@@ -117,7 +118,7 @@ function ContactsList(props) {
             <IconButton
               href="http://localhost:3000/apps/team/teamchat"
             >
-              <Icon>delete</Icon>
+              <Icon>chat</Icon>
             </IconButton>
           </div>
         ),

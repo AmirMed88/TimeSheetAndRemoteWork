@@ -1,22 +1,25 @@
-import FuseUtils from '@fuse/utils/FuseUtils';
-import { yupResolver } from '@hookform/resolvers/yup';
-import AppBar from '@material-ui/core/AppBar';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import Icon from '@material-ui/core/Icon';
-import IconButton from '@material-ui/core/IconButton';
-import TextField from '@material-ui/core/TextField';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import { useCallback, useEffect } from 'react';
-import { Controller, useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
+import FuseUtils from "@fuse/utils/FuseUtils";
+import { yupResolver } from "@hookform/resolvers/yup";
+import AppBar from "@material-ui/core/AppBar";
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import Icon from "@material-ui/core/Icon";
+import IconButton from "@material-ui/core/IconButton";
+import TextField from "@material-ui/core/TextField";
+import axios from 'axios';
+import MenuItem from '@material-ui/core/MenuItem';
 
-import _ from '@lodash';
-import * as yup from 'yup';
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import { useCallback, useEffect, useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+
+import _ from "@lodash";
+import * as yup from "yup";
 
 import {
   removeContact,
@@ -24,16 +27,17 @@ import {
   addContact,
   closeNewContactDialog,
   closeEditContactDialog,
-} from './store/contactsSlice';
+} from "./store/contactsSlice";
 
 const defaultValues = {
   // id: '',
   // name: '',
   // description:'',
-  id: '',
-  nom: '',
-  desc: '',
-  creator: '',
+  id: "",
+  nom: "",
+  desc: "",
+  creator: "",
+  members: [],
   // lastName: '',
   // avatar: 'assets/images/avatars/profile.jpg',
   // nickname: '',
@@ -50,26 +54,32 @@ const defaultValues = {
  * Form Validation Schema
  */
 const schema = yup.object().shape({
-  nom: yup.string().required('You must enter a name'),
+  nom: yup.string().required("You must enter a name"),
 });
 
 function ContactDialog(props) {
   const dispatch = useDispatch();
-  const contactDialog = useSelector(({ contactsApp }) => contactsApp.contacts.contactDialog);
+  const contactDialog = useSelector(
+    ({ contactsApp }) => contactsApp.contacts.contactDialog
+  );
 
-  const { control, watch, reset, handleSubmit, formState, getValues } = useForm({
-    mode: 'onChange',
-    defaultValues,
-    resolver: yupResolver(schema),
-  });
+  const { control, watch, reset, handleSubmit, formState, setValue } = useForm(
+    {
+      mode: "onChange",
+      defaultValues,
+      resolver: yupResolver(schema),
+    }
+  );
 
   const { isValid, dirtyFields, errors } = formState;
 
-  const id = watch('id');
-  const nom = watch('nom');
-  const desc = watch('desc');
-   const creator = watch('creator');
+  const id = watch("id");
+  const nom = watch("nom");
+  const desc = watch("desc");
+  const creator = watch("creator");
+  const members = watch("members");
 
+  const [accounts, setAccounts] = useState([]);
   /**
    * Initialize Dialog with Data
    */
@@ -77,14 +87,14 @@ function ContactDialog(props) {
     /**
      * Dialog type: 'edit'
      */
-    if (contactDialog.type === 'edit' && contactDialog.data) {
+    if (contactDialog.type === "edit" && contactDialog.data) {
       reset({ ...contactDialog.data });
     }
 
     /**
      * Dialog type: 'new'
      */
-    if (contactDialog.type === 'new') {
+    if (contactDialog.type === "new") {
       reset({
         ...defaultValues,
         ...contactDialog.data,
@@ -101,12 +111,23 @@ function ContactDialog(props) {
       initDialog();
     }
   }, [contactDialog.props.open, initDialog]);
+  /*
+
+  */
+
+  useEffect(() => {
+    const res = axios.get('http://localhost:5000/userprofile/getUsers').then((response) => {
+        setAccounts(response.data);
+        // console.log(response.data);
+        // console.log('hhh',selectedAccount);
+      });
+  }, setAccounts);
 
   /**
    * Close Dialog
    */
   function closeComposeDialog() {
-    return contactDialog.type === 'edit'
+    return contactDialog.type === "edit"
       ? dispatch(closeEditContactDialog())
       : dispatch(closeNewContactDialog());
   }
@@ -115,7 +136,7 @@ function ContactDialog(props) {
    * Form Submit
    */
   function onSubmit(data) {
-    if (contactDialog.type === 'new') {
+    if (contactDialog.type === "new") {
       dispatch(addContact(data));
     } else {
       dispatch(updateContact({ ...contactDialog.data, ...data }));
@@ -134,7 +155,7 @@ function ContactDialog(props) {
   return (
     <Dialog
       classes={{
-        paper: 'm-24',
+        paper: "m-24",
       }}
       {...contactDialog.props}
       onClose={closeComposeDialog}
@@ -144,14 +165,14 @@ function ContactDialog(props) {
       <AppBar position="static" elevation={0}>
         <Toolbar className="flex w-full">
           <Typography variant="subtitle1" color="inherit">
-            {contactDialog.type === 'new' ? 'New Contact' : 'Edit Contact'}
+            {contactDialog.type === "new" ? "New Contact" : "Edit Contact"}
           </Typography>
         </Toolbar>
         <div className="flex flex-col items-center justify-center pb-24">
           {/* <Avatar className="w-96 h-96" alt="contact avatar" src={avatar} /> */}
-          {contactDialog.type === 'edit' && (
+          {contactDialog.type === "edit" && (
             <Typography variant="h6" color="inherit" className="pt-8">
-              {name}
+              {nom}
             </Typography>
           )}
         </div>
@@ -161,7 +182,7 @@ function ContactDialog(props) {
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col md:overflow-hidden"
       >
-        <DialogContent classes={{ root: 'p-24' }}>
+        <DialogContent classes={{ root: "p-24" }}>
           <div className="flex">
             <div className="min-w-48 pt-20">
               <Icon color="action">account_circle</Icon>
@@ -203,7 +224,6 @@ function ContactDialog(props) {
             />
           </div>
 
-
           <div className="flex">
             <div className="min-w-48 pt-20" />
 
@@ -222,6 +242,35 @@ function ContactDialog(props) {
               )}
             />
           </div>
+
+          <Controller
+                name="idMembers"
+                control={control}
+                defaultValue={[]}
+                render={({ field: { onChange, value } }) => (
+                  <TextField
+                      id="account-selection"
+                      select
+                      value={control.members}
+                      onChange={(e) => setValue( "members", e.target.value )}
+                      placeholder="Select Account"
+                      margin="normal"
+                      variant="filled"
+                    >
+                      {accounts.map((member) => <MenuItem value={member._id}>{member.name}</MenuItem>)}
+                      
+                      
+                    </TextField>
+                  // <MembersMenu
+                  //   // onToggleMember={(id) => onChange(_.xor(value, [id]))}
+                  //   // members={contacts.id}
+                  //   // idMembers={value}
+                  // />
+                )}
+              />
+
+          
+
           {/* <div className="flex">
             <div className="min-w-48 pt-20" />
 
@@ -409,14 +458,14 @@ function ContactDialog(props) {
           </div> */}
         </DialogContent>
 
-        {contactDialog.type === 'new' ? (
+        {contactDialog.type === "new" ? (
           <DialogActions className="justify-between p-4 pb-16">
             <div className="px-16">
               <Button
                 variant="contained"
                 color="secondary"
                 type="submit"
-                disabled={_.isEmpty(dirtyFields) || !isValid}
+                // disabled={_.isEmpty(dirtyFields) || !isValid}
               >
                 Add
               </Button>
@@ -429,7 +478,7 @@ function ContactDialog(props) {
                 variant="contained"
                 color="secondary"
                 type="submit"
-                // disabled={_.isEmpty(dirtyFields) || !isValid}
+                disabled={_.isEmpty(dirtyFields) || !isValid}
               >
                 Save
               </Button>

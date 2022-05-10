@@ -6,7 +6,7 @@ export const getContacts = createAsyncThunk(
   'contactsApp/contacts/getContacts',
   async (routeParams, { getState }) => {
     routeParams = routeParams || getState().contactsApp.contacts.routeParams;
-    const response = await axios.get('https://backendtimeline.herokuapp.com/api/equipe', {
+    const response = await axios.get('http://localhost:5000/api/equipe', {
       params: routeParams,
     });
     const data = await response.data;
@@ -19,7 +19,7 @@ export const addContact = createAsyncThunk(
   'contactsApp/contacts/addContact',
   async (contact, { dispatch, getState }) => {
     
-    const response = await axios.post('https://backendtimeline.herokuapp.com/api/equipe',  contact );
+    const response = await axios.post('http://localhost:5000/api/equipe',  contact );
     const data = await response.data;
 
     dispatch(getContacts());
@@ -31,7 +31,7 @@ export const addContact = createAsyncThunk(
 export const updateContact = createAsyncThunk(
   'contactsApp/contacts/updateContact',
   async (contact, { dispatch, getState }) => {
-    const url = 'https://backendtimeline.herokuapp.com/api/equipe';
+    const url = 'http://localhost:5000/api/equipe';
     const response = await axios.patch(`${url}/${contact.id}`,  contact );
     const data = await response.data;
 
@@ -44,7 +44,7 @@ export const updateContact = createAsyncThunk(
 export const removeContact = createAsyncThunk(
   'contactsApp/contacts/removeContact',
   async (contactId, { dispatch, getState }) => {
-    const url = 'https://backendtimeline.herokuapp.com/api/equipe';
+    const url = 'http://localhost:5000/api/equipe';
     await axios.delete(`${url}/${contactId}`);
 
     return contactId;

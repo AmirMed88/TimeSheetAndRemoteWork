@@ -57,10 +57,10 @@ function ContactsSidebarContent(props) {
         animate={{ y: 0, opacity: 1, transition: { delay: 0.2 } }}
         className="rounded-0 shadow-none lg:rounded-16 lg:shadow"
       >
-        <div className="p-24 flex items-center">
+        {/* <div className="p-24 flex items-center">
           <Avatar alt={user.name} src={user.avatar} />
           <Typography className="mx-12">{user.name}</Typography>
-        </div>
+        </div> */}
 
         <Divider />
 
@@ -71,7 +71,7 @@ function ContactsSidebarContent(props) {
             className="w-full"
             onClick={(ev) => dispatch(openNewContactDialog())}
           >
-            New Contact
+            New Team
           </Button>
         </div>
 
@@ -86,7 +86,7 @@ function ContactsSidebarContent(props) {
             <Icon className="list-item-icon text-16" color="action">
               people
             </Icon>
-            <ListItemText className="truncate" primary="All contacts" disableTypography />
+            <ListItemText className="truncate" primary="All Teams" disableTypography />
           </ListItem>
           <ListItem
             button
@@ -110,7 +110,7 @@ function ContactsSidebarContent(props) {
             <Icon className="list-item-icon text-16" color="action">
               star
             </Icon>
-            <ListItemText className="truncate" primary="Starred contacts" disableTypography />
+            <ListItemText className="truncate" primary="Starred Teams" disableTypography />
           </ListItem>
         </List>
       </Paper>
