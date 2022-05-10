@@ -64,7 +64,7 @@ export default function WriteQuestion() {
     try {
       const res = await axios.post("/questions", newQuestion);
       
-      window.location.replace("http://localhost:3000/apps/blog/allquestions");
+      window.location.replace("https://timesheetleague.herokuapp.com/apps/blog/allquestions");
       window.location.replace("/apps/blog/allquestions");
       
     } catch (err) {}
@@ -122,7 +122,7 @@ export default function WriteQuestion() {
         
      
 
-        <button className="writequestionSubmit" type="submit" href="http://localhost:3000/apps/blog/allquestions">
+        <button className="writequestionSubmit" type="submit" href="https://timesheetleague.herokuapp.com/apps/blog/allquestions">
           Publish
         
         </button>

@@ -196,7 +196,7 @@ const userProfileController ={
             from:"maissafarhani55@gmail.com",
             to: user.email,
             subject:"password Reset",
-            html:`<a href="http://localhost:3000/pages/auth/reset-password">click me</a>`
+            html:`<a href="https://timesheetleague.herokuapp.com/pages/auth/reset-password">click me</a>`
             //html:`<h1>${OTP}</h1>`
             
         });
