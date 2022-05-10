@@ -30,7 +30,7 @@ function AboutTab() {
   const test = (x) => x + 1;
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/userprofile/get/${valeur}`).then((res) => {
+    axios.get(`https://backendtimeline.herokuapp.com/userprofile/get/${valeur}`).then((res) => {
       setData(res.data);
     });
   }, []);

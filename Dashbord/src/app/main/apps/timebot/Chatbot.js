@@ -144,7 +144,7 @@ class Chatbot extends Component {
             }
         }
         this.setState({ messages: [...this.state.messages, says]});
-        const res = await axios.post('http://localhost:5000/chatbot/api/df_text_query',  {text: queryText});
+        const res = await axios.post('https://backendtimeline.herokuapp.com/chatbot/api/df_text_query',  {text: queryText});
         console.log(res);
         for (let msg of res.data.fulfillmentMessages) {
             says = {
@@ -158,7 +158,7 @@ class Chatbot extends Component {
     
     async df_event_query(eventName) {
     
-        const res = await axios.post('http://localhost:5000/chatbot/api/df_event_query',  {event: eventName});
+        const res = await axios.post('https://backendtimeline.herokuapp.com/chatbot/api/df_event_query',  {event: eventName});
     
         for (let msg of res.data.fulfillmentMessages) {
             let says = {

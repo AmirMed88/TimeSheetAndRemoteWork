@@ -59,7 +59,7 @@ function ResetPasswordPage() {
    const EmailPassword={email,password}
    
    console.log(EmailPassword);
-   axios.post("http://localhost:5000/userprofile/resetpassword",EmailPassword) 
+   axios.post("https://backendtimeline.herokuapp.com/userprofile/resetpassword",EmailPassword) 
   }
 
   return (

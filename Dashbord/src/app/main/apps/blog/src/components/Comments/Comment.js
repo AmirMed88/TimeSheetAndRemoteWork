@@ -15,7 +15,7 @@ function Comment(props) {
     const [userVotes, setUserVotes] = useState(null);
   
     function refreshComments() {
-      axios.get('http://localhost:5000/api/comments/root/'+props.id)
+      axios.get('https://backendtimeline.herokuapp.com/api/comments/root/'+props.id)
         .then(response => {
           setComments(response.data);
         });
@@ -23,7 +23,7 @@ function Comment(props) {
   
     function refreshVotes() {
       const commentsIds = [comment._id, ...comments.map(c => c._id) ];
-      axios.post('http://localhost:5000/api/votes', {commentsIds}, {withCredentials:true})
+      axios.post('https://backendtimeline.herokuapp.com/api/votes', {commentsIds}, {withCredentials:true})
         .then(response => {
           setCommentsTotals(response.data.commentsTotals);
           setUserVotes(response.data.userVotes);

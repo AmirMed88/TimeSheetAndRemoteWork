@@ -11,7 +11,7 @@ export const getTasks = createAsyncThunk(
     const emailvalue = localStorage.getItem("emailvalue");
 
     routeParams = routeParams || getState().todoApp.todos.routeParams;
-    const response = await axios.get(`http://localhost:5000/tasks`, {
+    const response = await axios.get(`https://backendtimeline.herokuapp.com/tasks`, {
       params: routeParams,
     });
     const data = await response.data;
@@ -30,7 +30,7 @@ export const getTodos = createAsyncThunk(
     const phaseId=path.slice(15,51);
     console.log('slice',phaseId);
     routeParams = routeParams || getState().todoApp.todos.routeParams;
-    const response = await axios.get(`http://localhost:5000/tasks/findByPhase/${phaseId}`, {
+    const response = await axios.get(`https://backendtimeline.herokuapp.com/tasks/findByPhase/${phaseId}`, {
       params: routeParams,
     });
     const data = await response.data;
@@ -44,7 +44,7 @@ export const getPhases = createAsyncThunk(
   async (routeParams, { getState }) => {
     
     routeParams = routeParams || getState().todoApp.todos.routeParams;
-    const response = await axios.get('http://localhost:5000/phases', {
+    const response = await axios.get('https://backendtimeline.herokuapp.com/phases', {
       params: routeParams,
     });
     const data = await response.data;
@@ -56,7 +56,7 @@ export const getPhases = createAsyncThunk(
 //   'contactsApp/contacts/getContacts',
 //   async (routeParams, { getState }) => {
 //     routeParams = routeParams || getState().todoApp.todos.routeParams;
-//     const response = await axios.get('http://localhost:5000/api/team/find', {
+//     const response = await axios.get('https://backendtimeline.herokuapp.com/api/team/find', {
 //       params: routeParams,
 //     });
 //     const data = await response.data;
@@ -69,7 +69,7 @@ export const addTodo = createAsyncThunk(
   'todoApp/todos/addTodo',
   async (todo, { dispatch, getState }) => {
     const emailvalue = localStorage.getItem("emailvalue");
-    const response = await axios.post(`http://localhost:5000/tasks`, todo);
+    const response = await axios.post(`https://backendtimeline.herokuapp.com/tasks`, todo);
     const data = await response.data;
 
     dispatch(getTodos());
@@ -82,7 +82,7 @@ export const addTodo = createAsyncThunk(
 export const updateTodo = createAsyncThunk(
   'todoApp/todos/updateTodo',
   async (todo, { dispatch, getState }) => {
-    const url = 'http://localhost:5000/tasks';
+    const url = 'https://backendtimeline.herokuapp.com/tasks';
     const response = await axios.patch(`${url}/${todo.id}`, todo);
     const data = await response.data;
 
@@ -95,7 +95,7 @@ export const updateTodo = createAsyncThunk(
 export const removeTodo = createAsyncThunk(
   'todoApp/todos/removeTodo',
   async (todoId, { dispatch, getState }) => {
-    const url = 'http://localhost:5000/tasks';
+    const url = 'https://backendtimeline.herokuapp.com/tasks';
     const response = await axios.delete(`${url}/${todoId}`);
     const data = await response.data;
 

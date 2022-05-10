@@ -10,27 +10,27 @@ export default function Team() {
   
   //reading info
   useEffect(() => {
-    Axios.get("http://localhost:5000/read").then((response) => {
+    Axios.get("https://backendtimeline.herokuapp.com/read").then((response) => {
       setTeamsList(response.data);
     });
   }, []);
   //sending the info
   const addNewTeam = () => {
-    Axios.post("http://localhost:5000/insert", {
+    Axios.post("https://backendtimeline.herokuapp.com/insert", {
       teamName: teamName,
       teamDescription: teamDescription,
     });
   };
   //
   const updateTeam = (id) => {
-    Axios.put("http://localhost:5000/update", {
+    Axios.put("https://backendtimeline.herokuapp.com/update", {
       id: id,
       newTeamName: newTeamName,
     });
   };
   //
   const deleteTeam = (id) => {
-    Axios.delete(`http://localhost:5000/delete/${id}`);
+    Axios.delete(`https://backendtimeline.herokuapp.com/delete/${id}`);
   };
 
   return(

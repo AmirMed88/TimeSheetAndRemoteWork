@@ -6,7 +6,7 @@ import Parser from 'html-react-parser';
 
 export default function Post({ post }) {
   
-  const PF = "http://localhost:5000/images/";
+  const PF = "https://backendtimeline.herokuapp.com/images/";
   return (
     <div className="post">
       

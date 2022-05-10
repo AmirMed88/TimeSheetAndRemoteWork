@@ -2,7 +2,7 @@
     "name": "fuse-react-app",
     "version": "6.2.0",
     "private": true,
-    "proxy": "http://localhost:5000",
+    "proxy": "https://backendtimeline.herokuapp.com",
     "dependencies": {
         "@ckeditor/ckeditor5-build-classic": "^33.0.0",
         "@ckeditor/ckeditor5-react": "^4.0.1",

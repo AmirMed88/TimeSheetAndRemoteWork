@@ -114,7 +114,7 @@ function RegisterPage() {
     };
   
  
-    axios.post('http://localhost:5000/userprofile/register',newUser) 
+    axios.post('https://backendtimeline.herokuapp.com/userprofile/register',newUser) 
     history.push('/pages/auth/login')
   
     

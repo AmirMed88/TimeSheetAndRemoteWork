@@ -24,7 +24,7 @@ export default function AllQuestions() {
 
     const handleSearch = async () => {
         try {
-          await axios.get(`http://localhost:5000/${question.title}`, {
+          await axios.get(`https://backendtimeline.herokuapp.com/${question.title}`, {
             // name:data.name,
             title,
             desc,
@@ -33,13 +33,13 @@ export default function AllQuestions() {
         } catch (err) {}
       };
     //   const fetchPhases = () => axios.get(url2);
-    //   const url1 = 'http://localhost:5000/projects';
+    //   const url1 = 'https://backendtimeline.herokuapp.com/projects';
 
       const handleSubmit = async (e) => {
         e.preventDefault();
         const question={title}     
         
-          const res = await axios.get(`http://localhost:5000/search/${title}`);
+          const res = await axios.get(`https://backendtimeline.herokuapp.com/search/${title}`);
           console.log(...res.data)
         //   setData({data:res.data})
         //   console.log(data)

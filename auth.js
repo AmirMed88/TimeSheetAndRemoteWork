@@ -8,7 +8,7 @@ const GOOGLE_CLIENT_SECRET ='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'
 passport.use(new GoogleStrategy({
   clientID: GOOGLE_CLIENT_ID,
   clientSecret: GOOGLE_CLIENT_SECRET,
-  callbackURL: "http://localhost:5000/auth/google/callback",
+  callbackURL: "https://backendtimeline.herokuapp.com/auth/google/callback",
   passReqToCallback: true,
 },
 function(request, accessToken, refreshToken, profile, done) {

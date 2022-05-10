@@ -62,7 +62,7 @@ function TodoListItem(props) {
   const TeamHandler=(e)=>{
     // setPostData(e.target.value );
     setPostData({ ...postData, members: e.target.value })
-    const res =  axios.post(`http://localhost:5000/tasks/addMember/${props.todo.id}`,{members:e.target.value}).then((response) => {
+    const res =  axios.post(`https://backendtimeline.herokuapp.com/tasks/addMember/${props.todo.id}`,{members:e.target.value}).then((response) => {
     // setTeams(response.data)
     console.log(response.data);
     setSuccess(true);
@@ -74,7 +74,7 @@ function TodoListItem(props) {
 
   useEffect(()=>{
     
-   const res =  axios.post('http://localhost:5000/api/member/find').then((response) => {
+   const res =  axios.post('https://backendtimeline.herokuapp.com/api/member/find').then((response) => {
     setTeams(response.data)
     
     // console.log(response.data);

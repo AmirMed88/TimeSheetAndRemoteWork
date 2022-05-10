@@ -7,7 +7,7 @@ function PostsListing() {
   const [comments,setComments] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/comments', {withCredentials:true})
+    axios.get('https://backendtimeline.herokuapp.com/api/comments', {withCredentials:true})
       .then(response => setComments(response.data));
 
   }, []);

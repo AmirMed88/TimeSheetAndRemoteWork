@@ -49,7 +49,7 @@ function ForgotPasswordPage() {
 
    const Email={email}
    console.log(Email);
-   axios.post("http://localhost:5000/userprofile/forgotpassword",Email) 
+   axios.post("https://backendtimeline.herokuapp.com/userprofile/forgotpassword",Email) 
   }
 
   return (

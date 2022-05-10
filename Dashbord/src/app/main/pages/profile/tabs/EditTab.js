@@ -163,7 +163,7 @@ function EditTab() {
  
    const utilisateur={gender,birthday,aboutme,name,tel,adress,occupation,skill,job,status}
    console.log(utilisateur);
-   axios.put(`http://localhost:5000/userprofile/put/${valeur}`,utilisateur) 
+   axios.put(`https://backendtimeline.herokuapp.com/userprofile/put/${valeur}`,utilisateur) 
    
  
    

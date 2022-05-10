@@ -84,7 +84,7 @@ function NotificationPanel(props) {
 
   useEffect(() => {
     console.log("tasknotif",tasknotif)
-    const res =  axios.get('http://localhost:5000/tasks/due-tasks/no-deadline').then((response) => {
+    const res =  axios.get('https://backendtimeline.herokuapp.com/tasks/due-tasks/no-deadline').then((response) => {
     setTasks(response.data);
     
      console.log("ayooo",response.data);

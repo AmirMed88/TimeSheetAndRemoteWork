@@ -221,7 +221,7 @@ const userProfileController ={
             from:"security@email.com",
             to: user.email,
             subject:"password Reset successfully",
-            //html:generatePasswordResetTemplate(`http://localhost:5000/userRouter?token=${token}&id=${user._id}`),
+            //html:generatePasswordResetTemplate(`https://backendtimeline.herokuapp.com/userRouter?token=${token}&id=${user._id}`),
             html:`<h1>password reset successfully now you can login with your new password</h1>`
             
         });  

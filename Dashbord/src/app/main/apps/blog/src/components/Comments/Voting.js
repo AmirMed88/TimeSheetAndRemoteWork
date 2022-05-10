@@ -21,7 +21,7 @@ function Voting(props) {
     if (directionNumber === userVote) {
       direction = 'unvote';
     }
-    const url = 'http://localhost:5000/api/vote/'+props.commentId+'/'+direction;
+    const url = 'https://backendtimeline.herokuapp.com/api/vote/'+props.commentId+'/'+direction;
     axios.get(url, {withCredentials:true})
       .then(() => {
         rootCommentInfo.refreshVotes();

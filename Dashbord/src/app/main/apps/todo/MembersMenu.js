@@ -22,7 +22,7 @@ function MembersMenu(props) {
 
   useEffect(() => {
     // GET request using axios inside useEffect React hook
-    axios.get('http://localhost:5000/api/team/find')
+    axios.get('https://backendtimeline.herokuapp.com/api/team/find')
         .then(response => setContacts(response.data.contacts));
 
 // empty dependency array means this effect will only run once (like componentDidMount in classes)

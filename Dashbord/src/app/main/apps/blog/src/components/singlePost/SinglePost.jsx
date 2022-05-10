@@ -25,7 +25,7 @@ export default function SinglePost() {
   const location = useLocation();
   const path = location.pathname;
   const [post, setPost] = useState({});
-  const PF = "http://localhost:5000/images/";
+  const PF = "https://backendtimeline.herokuapp.com/images/";
   const emailvalue = localStorage.getItem("emailvalue");
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");

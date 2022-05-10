@@ -10,7 +10,7 @@ function CommentForm (props) {
   function postComment(e) {
     e.preventDefault();
     const data = {body:commentBody, parentId:props.parentId,rootId:props.rootId,};
-    axios.post('http://localhost:5000/api/comments', data, {withCredentials:true})
+    axios.post('https://backendtimeline.herokuapp.com/api/comments', data, {withCredentials:true})
       .then(response => {
         setCommentBody('');
         if (props.onSubmit) {

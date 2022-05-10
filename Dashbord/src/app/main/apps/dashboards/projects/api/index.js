@@ -4,10 +4,10 @@ const form = require('../../projects/components/Phase/Form/Form')
 const pid =form.projectidd
 
 const emailvalue= localStorage.getItem('emailvalue');
-const url1 = 'http://localhost:5000/projects';
-const url2 = 'http://localhost:5000/phases';
-const url3 = 'http://localhost:5000/api/team';
-export const fetchPosts = () => axios.get(`http://localhost:5000/projects/api/projects?user=${emailvalue}`);
+const url1 = 'https://backendtimeline.herokuapp.com/projects';
+const url2 = 'https://backendtimeline.herokuapp.com/phases';
+const url3 = 'https://backendtimeline.herokuapp.com/api/team';
+export const fetchPosts = () => axios.get(`https://backendtimeline.herokuapp.com/projects/api/projects?user=${emailvalue}`);
 export const createPost = (newPost) => axios.post(url1, newPost);
 export const likePost = (id) => axios.patch(`${url1}/${id}/likePost`);
 export const updatePost = (id, updatedPost) => axios.patch(`${url1}/${id}`, updatedPost);
