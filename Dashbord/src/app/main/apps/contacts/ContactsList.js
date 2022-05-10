@@ -115,7 +115,7 @@ function ContactsList(props) {
 
             
             <IconButton
-              href="https://timesheetleague.herokuapp.com/apps/team/teamchat"
+              href="http://localhost:3000/apps/team/teamchat"
             >
               <Icon>delete</Icon>
             </IconButton>

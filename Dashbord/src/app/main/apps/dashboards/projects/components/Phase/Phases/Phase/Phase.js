@@ -41,7 +41,7 @@ const Phase = ({ phase, setCurrentId }) => {
         <Typography variant="body2" color="textSecondary" component="p">Assigned to : {phase.memberid} </Typography>
       </CardContent>
       <CardActions className={classes.cardActions}>
-      <Button size="small" color="primary" href={`https://timesheetleague.herokuapp.com/apps/todo/all/`+phase._id}>Tasks</Button>
+      <Button size="small" color="primary" href={`http://localhost:3000/apps/todo/all/`+phase._id}>Tasks</Button>
       <Button size="small" color="dark" onClick={() => dispatch(deletePhase(phase._id))}><DeleteIcon fontSize="medium" /> Delete</Button>
       </CardActions>
     </Card>

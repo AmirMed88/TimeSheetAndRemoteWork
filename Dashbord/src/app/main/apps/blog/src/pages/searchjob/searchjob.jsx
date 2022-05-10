@@ -69,7 +69,7 @@ return(<div>
    {/* <div className={classes.datediv}>{p.date}</div> */}
 
    <div className={classes.place}>  <h4 >𝐖𝐨𝐫𝐤 𝐏𝐥𝐚𝐜𝐞: {p.place}    </h4></div>
-   <Button className="details"> <a href={`https://timesheetleague.herokuapp.com/apps/blog/singlejob/`+ p.id} target="_blank">view details</a> </Button>
+   <Button className="details"> <a href={`http://localhost:3000/apps/blog/singlejob/`+ p.id} target="_blank">view details</a> </Button>
    </Card>
 
     </div>  

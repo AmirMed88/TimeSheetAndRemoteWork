@@ -42,7 +42,7 @@ const CardModel = (props) => {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button size="small" color="primary" href='https://timesheetleague.herokuapp.com/apps/blog/blog-home'>
+          <Button size="small" color="primary" href='http://localhost:3000/apps/blog/blog-home'>
             LearnMore
           </Button>
         </CardActions>

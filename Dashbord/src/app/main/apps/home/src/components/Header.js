@@ -72,7 +72,7 @@ export default function Header() {
             Welcome to <br />
             <span className={classes.colorText}>Timeline.</span>
           </h1>
-          <Button variant="contained" color="primary" href="https://timesheetleague.herokuapp.com/pages/auth/login">
+          <Button variant="contained" color="primary" href="http://localhost:3000/pages/auth/login">
               Login
             </Button>
           <Scroll to="place-to-visit" smooth={true}>

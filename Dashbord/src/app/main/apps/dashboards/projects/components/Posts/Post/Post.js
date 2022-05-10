@@ -15,7 +15,7 @@ const Post = ({ post, setCurrentId }) => {
  
   return (
     <Card className={classes.card}>
-      <CardActionArea href={`https://timesheetleague.herokuapp.com/apps/dashboards/reports/`+post._id+`/`+post.teamid+`/`+post.name}>
+      <CardActionArea href={`http://localhost:3000/apps/dashboards/reports/`+post._id+`/`+post.teamid+`/`+post.name}>
       <CardMedia  className={classes.media} image={post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} title={post.title} /></CardActionArea>
       <div className={classes.overlay}>
         <Typography variant="h6">{post.creator}</Typography>
@@ -35,7 +35,7 @@ const Post = ({ post, setCurrentId }) => {
         <Typography variant="body2" color="textSecondary" component="p"> {post.endDate}</Typography>
       </CardContent>
       <CardActions className={classes.cardActions}>
-        <Button size="small" color="primary" href={`https://timesheetleague.herokuapp.com/apps/dashboards/phases/`+post._id+`/`+post.teamid}>Phases</Button>    
+        <Button size="small" color="primary" href={`http://localhost:3000/apps/dashboards/phases/`+post._id+`/`+post.teamid}>Phases</Button>    
         <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id))}><DeleteIcon fontSize="small" /> Delete</Button>
       </CardActions>
       
